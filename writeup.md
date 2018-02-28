@@ -32,7 +32,7 @@ To preprocess the images, I used Contrast Limited Adaptive Histogram Equalizatio
 distributing the intensities and allows areas of lower local contrast to gain a higher contrast. In our use case, it increased the brightness of the traffic signs in the middle, so the network could learn better features. CLAHE is always applied to greyscale images. Further, I normalized the image pixels by dividing each of them by 255. I also experimented with augmentation by rotating and scaling but to my disappointment the validation accuracy decreased (maybe something was wrong in the way I was doing it). Eventually, I stuck with CLAHE as the only pre-processing technique applied.
 Here is an example of an original image and a pre-processed image (both are greyscale images):
 
-![Oops... Where is the image ?](sample_original_image.png) ![Oops... Where is the image ?](sample_preprocessed_image.png)
+![Oops... Where is the image ?](sample_original_image.png) 
 
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
@@ -76,8 +76,8 @@ The model is based on the LeNet architechture. In the paper by Yan LeCun, the ar
 
 Here are five German traffic signs that I found on the web:
 
-![Oops... Where is the image ?](new_test_images/001.jpg) ![Oops... Where is the image ?](new_test_images/002.jpg) ![Oops... Where is the image ?](new_test_images/003.jpg)
-![Oops... Where is the image ?](new_test_images/004.jpg) ![Oops... Where is the image ?](new_test_images/005.jpg)
+![Oops... Where is the image ?](new_test_images/001.jpg=100x20) ![Oops... Where is the image ?](new_test_images/002.jpg=100x20) ![Oops... Where is the image ?](new_test_images/003.jpg=100x20)
+![Oops... Where is the image ?](new_test_images/004.jpg=100x20) ![Oops... Where is the image ?](new_test_images/005.jpg=100x20)
 
 The first image might be difficult to classify because ...
 
@@ -113,7 +113,5 @@ For the first image, the model is relatively sure that this is a stop sign (prob
 
 For the second image ... 
 
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
-#### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
 
 

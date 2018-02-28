@@ -22,7 +22,7 @@ Here is an exploratory visualization of the data set. As is evident from the bar
 
 ![Oops... Where is the image ?](Visualizations/validation_set_visualization.png)
 
-![Oops... Where is the image ?](test_set_visualization.png)
+![Oops... Where is the image ?](Visualizations/test_set_visualization.png)
 
 ### Design and Test a Model Architecture
 
@@ -76,8 +76,8 @@ The model is based on the LeNet architechture. In the paper by Yan LeCun, the ar
 
 Here are five German traffic signs that I found on the web:
 
-![Oops... Where is the image ?](new_test_images/001.jpg =100x20) ![Oops... Where is the image ?](new_test_images/002.jpg =100x20) ![Oops... Where is the image ?](new_test_images/003.jpg =100x20)
-![Oops... Where is the image ?](new_test_images/004.jpg =100x20) ![Oops... Where is the image ?](new_test_images/005.jpg =100x20)
+![Oops... Where is the image ?](new_test_images/001.jpg) ![Oops... Where is the image ?](new_test_images/002.jpg) ![Oops... Where is the image ?](new_test_images/003.jpg)
+![Oops... Where is the image ?](new_test_images/004.jpg) ![Oops... Where is the image ?](new_test_images/005.jpg)
 
 The fourth image (pedestrians) might be difficult to classify because the pedestrian class has the lowest precision, recall and fscore. 
 

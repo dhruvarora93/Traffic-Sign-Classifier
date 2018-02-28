@@ -18,11 +18,11 @@ I used the pandas library to calculate summary statistics of the traffic signs d
 
 Here is an exploratory visualization of the data set. As is evident from the bar chart, the distribution of classes is similar in training, validation and testing datasets. 
 
-![Oops... Where is the image ?][training set visualization.png]
+![Oops... Where is the image ?](training set visualization.png)
 
-![Oops... Where is the image ?][validation set visualization.png]
+![Oops... Where is the image ?](validation set visualization.png)
 
-![Oops... Where is the image ?][test set visualization.png]
+![Oops... Where is the image ?](test set visualization.png)
 
 ### Design and Test a Model Architecture
 
@@ -32,7 +32,7 @@ To preprocess the images, I used Contrast Limited Adaptive Histogram Equalizatio
 distributing the intensities and allows areas of lower local contrast to gain a higher contrast. In our use case, it increased the brightness of the traffic signs in the middle, so the network could learn better features. CLAHE is always applied to greyscale images. Further, I normalized the image pixels by dividing each of them by 255. I also experimented with augmentation by rotating and scaling but to my disappointment the validation accuracy decreased (maybe something was wrong in the way I was doing it). Eventually, I stuck with CLAHE as the only pre-processing technique applied.
 Here is an example of an original image and a pre-processed image (both are greyscale images):
 
-![Oops... Where is the image ?][sample_original_image.png] ![Oops... Where is the image ?][sample_preprocessed_image.png]
+![Oops... Where is the image ?](sample_original_image.png) ![Oops... Where is the image ?](sample_preprocessed_image.png)
 
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
@@ -59,10 +59,10 @@ The model architechture is similar to LeNet.
 
 Following are the values of different hyperparameters:
 
-Learning rate= 0.01
-Number of epochs= 60
-Optimizer= Adam
-Batch size= 128
+Learning rate= 0.01 <br />
+Number of epochs= 60  <br />
+Optimizer= Adam  <br />
+Batch size= 128  <br />
 Activation function= Exponential Linear Unit
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
@@ -76,8 +76,8 @@ The model is based on the LeNet architechture. In the paper by Yan LeCun, the ar
 
 Here are five German traffic signs that I found on the web:
 
-![Oops... Where is the image ?][new_test_images/001.jpg] ![Oops... Where is the image ?][new_test_images/002.jpg] ![Oops... Where is the image ?][new_test_images/003.jpg] 
-![Oops... Where is the image ?][new_test_images/004.jpg] ![Oops... Where is the image ?][new_test_images/005.jpg]
+![Oops... Where is the image ?](new_test_images/001.jpg) ![Oops... Where is the image ?](new_test_images/002.jpg) ![Oops... Where is the image ?](new_test_images/003.jpg)
+![Oops... Where is the image ?](new_test_images/004.jpg) ![Oops... Where is the image ?](new_test_images/005.jpg)
 
 The first image might be difficult to classify because ...
 

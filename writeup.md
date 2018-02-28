@@ -9,16 +9,20 @@
 I used the pandas library to calculate summary statistics of the traffic signs data set:
 
 * The size of training set is = 34799
-* The size of the validation set is =
+* The size of the validation set is = 4410
 * The size of test set is = 12630
 * The shape of a traffic sign image is = (32,32,3)
 * The number of unique classes/labels in the data set is = 43
 
 #### 2. Include an exploratory visualization of the dataset.
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+Here is an exploratory visualization of the data set. As is evident from the bar chart, the distribution of classes is similar in training, validation and testing datasets. 
 
-![alt text][image1]
+![Oops... Where is the image ?][training set visualization.png]
+
+![Oops... Where is the image ?][validation set visualization.png]
+
+![Oops... Where is the image ?][test set visualization.png]
 
 ### Design and Test a Model Architecture
 
@@ -26,55 +30,44 @@ Here is an exploratory visualization of the data set. It is a bar chart showing 
 
 To preprocess the images, I used Contrast Limited Adaptive Histogram Equalization (CLAHE) which divides the image into small blocks and each of these blocks are histogram equalized. This improves the contrast of the image by
 distributing the intensities and allows areas of lower local contrast to gain a higher contrast. In our use case, it increased the brightness of the traffic signs in the middle, so the network could learn better features. CLAHE is always applied to greyscale images. Further, I normalized the image pixels by dividing each of them by 255. I also experimented with augmentation by rotating and scaling but to my disappointment the validation accuracy decreased (maybe something was wrong in the way I was doing it). Eventually, I stuck with CLAHE as the only pre-processing technique applied.
+Here is an example of an original image and a pre-processed image (both are greyscale images):
 
-![alt text][image2]
-
-Here is an example of an original image and an augmented image:
-
-![alt text][image3]
-
+![Oops... Where is the image ?][sample_original_image.png] ![Oops... Where is the image ?][sample_preprocessed_image.png]
 
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
-My final model consisted of the following layers:
+The model architechture is similar to LeNet. 
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
-| RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
-|						|												|
-|						|												|
+| Input         		| 32x32x1 Greyscale image   	| 
+| Convolution 5x5     	| 1x1 stride, valid padding, no. of filters=6, outputs 28x28x6 |
+| ELU					|	Exponential Linear Units		|
+| Max pooling	      	| 2x2 window, 2x2 stride,  outputs 14x14x6 				|
+| Convolution 5x5	    |1x1 stride, valid padding, no. of filters=16, outputs 10x10x16 |
+| ELU					|	Exponential Linear Units		|
+| Max pooling	      	| 2x2 window, 2x2 stride,  outputs 5x5x16				|
+| Fully connected		| Input = 400 (Flatten output from previous layer), Output = 120 |
+| ELU					|	Exponential Linear Units		|
+| Fully connected		| Input = 120 , Output = 84 |
+| ELU					|	Exponential Linear Units		|
+| Fully connected		| Input = 84, Output = 10 		|
+
  
-
-
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-To train the model, I used an ....
+Following are the values of different hyperparameters:
+
+Learning rate= 0.01
+Number of epochs= 60
+Optimizer= Adam
+Batch size= 128
+Activation function= Exponential Linear Unit
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
-My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
-
-If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
-
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
+The model is based on the LeNet architechture. In the paper by Yan LeCun, the architechture taken as input a 32x32 image and performs really well. The size of our input image is the same and thus it served as a good starting point for this project. It's success is evident by the training set accuracy which is 99.95%. The validation set accuracy is 96.5% and the test set accuracy is 95.5%. Also, I computed the precision, recall and fscore for every class.
  
 
 ### Test a Model on New Images
@@ -83,8 +76,8 @@ If a well known architecture was chosen:
 
 Here are five German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+![Oops... Where is the image ?][new_test_images/001.jpg] ![Oops... Where is the image ?][new_test_images/002.jpg] ![Oops... Where is the image ?][new_test_images/003.jpg] 
+![Oops... Where is the image ?][new_test_images/004.jpg] ![Oops... Where is the image ?][new_test_images/005.jpg]
 
 The first image might be difficult to classify because ...
 
@@ -94,11 +87,11 @@ Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Yield      		| Stop sign   									| 
+| Stop     			| U-turn 										|
+| No Entry					| Yield											|
+| Pedestrians	      		| Bumpy Road					 				|
+| Speed Limit (60km/hr)			| Slippery Road      							|
 
 
 The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...

@@ -18,11 +18,11 @@ I used the pandas library to calculate summary statistics of the traffic signs d
 
 Here is an exploratory visualization of the data set. As is evident from the bar chart, the distribution of classes is similar in training, validation and testing datasets. 
 
-![Oops... Where is the image ?](training set visualization.png)
+![Oops... Where is the image ?](Visualizations/training_set_visualization.png)
 
-![Oops... Where is the image ?](validation set visualization.png)
+![Oops... Where is the image ?](Visualizations/validation_set_visualization.png)
 
-![Oops... Where is the image ?](test set visualization.png)
+![Oops... Where is the image ?](test_set_visualization.png)
 
 ### Design and Test a Model Architecture
 
@@ -67,7 +67,7 @@ Activation function= Exponential Linear Unit
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
-The model is based on the LeNet architechture. In the paper by Yan LeCun, the architechture taken as input a 32x32 image and performs really well. The size of our input image is the same and thus it served as a good starting point for this project. It's success is evident by the training set accuracy which is 99.95%. The validation set accuracy is 96.5% and the test set accuracy is 95.5%. Also, I computed the precision, recall and fscore for every class.
+The model is based on the LeNet architechture. In the paper by Yan LeCun, the architechture taken as input a 32x32 image and performs really well. The size of our input image is the same and thus it served as a good starting point for this project. It's success is evident by the training set accuracy which is 99.8%. The validation set accuracy is 97.5% and the test set accuracy is 95.4%. Also, I computed the precision, recall and fscore for every class.
  
 
 ### Test a Model on New Images
@@ -76,10 +76,10 @@ The model is based on the LeNet architechture. In the paper by Yan LeCun, the ar
 
 Here are five German traffic signs that I found on the web:
 
-![Oops... Where is the image ?](new_test_images/001.jpg=100x20) ![Oops... Where is the image ?](new_test_images/002.jpg=100x20) ![Oops... Where is the image ?](new_test_images/003.jpg=100x20)
-![Oops... Where is the image ?](new_test_images/004.jpg=100x20) ![Oops... Where is the image ?](new_test_images/005.jpg=100x20)
+![Oops... Where is the image ?](new_test_images/001.jpg =100x20) ![Oops... Where is the image ?](new_test_images/002.jpg =100x20) ![Oops... Where is the image ?](new_test_images/003.jpg =100x20)
+![Oops... Where is the image ?](new_test_images/004.jpg =100x20) ![Oops... Where is the image ?](new_test_images/005.jpg =100x20)
 
-The first image might be difficult to classify because ...
+The fourth image (pedestrians) might be difficult to classify because the pedestrian class has the lowest precision, recall and fscore. 
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
@@ -87,31 +87,42 @@ Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Yield      		| Stop sign   									| 
-| Stop     			| U-turn 										|
-| No Entry					| Yield											|
-| Pedestrians	      		| Bumpy Road					 				|
-| Speed Limit (60km/hr)			| Slippery Road      							|
+| Yield      		| Yield   									| 
+| Stop     			| General Caution 										|
+| No Entry					| No Entry											|
+| Pedestrians	      		| Right-of-way at the next intersection					 				|
+| Speed Limit (60km/hr)			| Speed Limit (60km/hr)      							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 3 of the 5 traffic signs, which gives an accuracy of 60%. The pedestrain image was expected to have a wrong prediction. The correct label is not even present in the top 5 predictions for the image. The 'stop' image has the correct label with the second-highest probability, so it fares better as comapred to the pedesntrian image.  
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
+The code for making predictions on my final model is located in the 21st and 22nd cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+For the first image, the model is 100% sure that this is a stop sign, and the image does contain a stop sign. Every other probability is zero. 
+
+For the second image, the model is relatively sure that this is a 'General Caution' sign, but it is actually NOT. The correct label is the second one. 
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| .60         			| General Caution   									| 
+| .40     				| Stop 										|
+| .00					| Turn Left Ahead											|
+| .00	      			| Keep Right					 				|
+| .00				    | Ahead Only      							|
 
+For the third image, the model is 100% sure that this is a 'No Entry' sign, and it is the correct prediction. Every other probability is zero. 
 
-For the second image ... 
+For the fourth image, the model is relatively sure that this is a 'Right-of-way at the next intersection' sign, but it is actually NOT. The correct label is not present in top 5 predictions. 
 
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| .92         			| Right-of-way at the next intersection   									| 
+| .07     				| General Caution 										|
+| .01					| Traffic Signals											|
+| .00	      			| Roundabout Mandatory					 				|
+| .00				    | Vehicles over 3.5 tons prohibited      							|
 
+For the last image, the model is 100% sure that this is a 'Speed Limit (60km/hr)' sign, and it is the correct prediction. Every other probability is zero.
 
